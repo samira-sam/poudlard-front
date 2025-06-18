@@ -53,7 +53,9 @@ onMounted(async () => {
   loading.value = true;
   error.value = null;
   try {
-    const { data } = await axios.get<Professeur>(`http://localhost:3033/professeurs/${id}`);
+    /*const { data } = await axios.get<Professeur>(`http://localhost:3033/professeurs/${id}`);*/
+
+    const { data } = await axios.get<Professeur>(`http://localhost:3033/api/professeurs/${id}`);
     professeur.value = data;
 
     console.log('Professeur chargé dans ProfesseurDetail:', professeur.value);

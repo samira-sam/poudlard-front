@@ -28,7 +28,7 @@
           v-model="passwordValue"
           @blur="passwordBlur"
           placeholder="Entrez votre mot de passe"
-          class="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          class="block w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-900"
           :class="{ 'border-red-500 ring-red-500': passwordError }"
           aria-describedby="password-error"
         />
@@ -38,7 +38,7 @@
       <!-- Bouton -->
       <button 
         type="submit" 
-        class="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300 ease-in-out font-semibold focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+        class="w-full bg-purple-900 text-white py-2 px-4 rounded-md hover:bg-purple-800 transition duration-300 ease-in-out font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
         :disabled="loading"
       >
         {{ loading ? 'Connexion...' : 'Se connecter' }}
@@ -66,9 +66,9 @@ const validationSchema = toTypedSchema(
       .email('Veuillez entrer une adresse email valide.'),
     password: z.string()
       .min(1, 'Le mot de passe est requis.')
-      .min(8, 'Le mot de passe doit contenir au moins 8 caractères.')
-      .regex(/[A-Z]/, 'Le mot de passe doit contenir au moins une lettre majuscule.')
-      .regex(/[!@#$%^&*(),.?":{}|<>]/, 'Le mot de passe doit contenir au moins un caractère spécial (!@#$%^&*(),.?":{}|<>).'),
+      .min(2, 'Le mot de passe doit contenir au moins 8 caractères.')
+      /*.regex(/[A-Z]/, 'Le mot de passe doit contenir au moins une lettre majuscule.')
+      .regex(/[!@#$%^&*(),.?":{}|<>]/, 'Le mot de passe doit contenir au moins un caractère spécial (!@#$%^&*(),.?":{}|<>).')*/,
   })
 );
 

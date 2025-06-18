@@ -1,13 +1,13 @@
 <template>
   <div class="min-h-screen bg-gray-100 p-6 sm:p-10">
     <div class="max-w-3xl mx-auto bg-white p-8 rounded-lg shadow-lg">
-      <h1 class="text-3xl font-bold text-center text-indigo-700 mb-8">
+      <h1 class="text-3xl font-bold text-center text-purple-700 mb-8">
         Modifier mon Profil Élève
       </h1>
 
       <div
         v-if="eleveStore.isLoading"
-        class="text-center text-indigo-500 font-semibold text-lg py-10"
+        class="text-center text-purple-500 font-semibold text-lg py-10"
       >
         Chargement des données du profil...
       </div>
@@ -28,7 +28,7 @@
             type="text"
             id="nom"
             v-model="editableProfil.nom"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
           />
         </div>
 
@@ -40,7 +40,7 @@
             type="text"
             id="prenom"
             v-model="editableProfil.prenom"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
           />
         </div>
 
@@ -54,7 +54,7 @@
             type="text"
             id="contact_parent"
             v-model="editableProfil.contact_parent"
-            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
           />
         </div>
 
@@ -69,7 +69,7 @@
           <button
             type="submit"
             :disabled="eleveStore.isLoading"
-            class="px-6 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            class="px-6 py-2 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {{ eleveStore.isLoading ? "Enregistrement..." : "Enregistrer" }}
           </button>
@@ -89,9 +89,8 @@ const eleveStore = useEleveStore();
 const router = useRouter();
 
 // ⭐ MODIFICATION ICI : Initialise editableProfil avec des chaînes vides pour nom et prenom, et null pour contact_parent ⭐
-const editableProfil = ref<
-  Pick<EleveProfil, "nom" | "prenom" | "contact_parent">
->({
+const editableProfil = ref< Pick<EleveProfil, "nom" | "prenom" | "contact_parent"> >
+({
   nom: '', // Assure que nom est une chaîne vide par défaut
   prenom: '', // Assure que prenom est une chaîne vide par défaut
   contact_parent: null, // contact_parent peut être null

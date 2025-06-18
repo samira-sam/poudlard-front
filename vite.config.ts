@@ -63,7 +63,7 @@ export default defineConfig({
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
-      '/professeurs': {
+      '/api/professeurs': {
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
