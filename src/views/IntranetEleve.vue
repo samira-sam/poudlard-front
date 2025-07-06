@@ -25,8 +25,7 @@
 
         <button
           @click="modifierProfil"
-          class="mt-4 px-6 py-2 rounded-lg font-semibold transition duration-300"
-          :style="{ background: 'linear-gradient(to right, #3b0764, #3b0764)', color: 'white' }"
+          class="mt-4 px-6 py-2 rounded-lg font-semibold transition duration-300 bg-gradient-to-r from-purple-900 to-purple-900 text-white"
           aria-label="Modifier les informations de mon profil"
         >
           Modifier mon profil
@@ -57,8 +56,13 @@
               </td>
               <td class="py-3 px-4 text-black font-medium border-r border-gray-200">{{ matiere.moyenne }}</td>
               <td class="py-3 px-4 text-black">
-                <span v-if="matiere.commentaires && matiere.commentaires.length > 0">
-                  {{ matiere.commentaires.join('; ') }}
+                <span v-if="matiere.notes_individuelles && matiere.notes_individuelles.length > 0">
+                  <template v-for="(note, index) in matiere.notes_individuelles" :key="index">
+                    <span v-if="note.commentaire && note.commentaire.trim().length > 0">
+                      {{ note.commentaire }}
+                    </span>
+                    <br v-if="index < matiere.notes_individuelles.length - 1"/>
+                  </template>
                 </span>
                 <span v-else class="text-gray-500">Aucun commentaire</span>
               </td>
@@ -77,8 +81,7 @@
       <div class="flex justify-start">
         <button
           @click="handleLogout"
-          class="px-6 py-2 rounded-lg font-semibold transition duration-300"
-          :style="{ background: '#dc3545', color: 'white' }"
+          class="px-6 py-2 rounded-lg font-semibold transition duration-300 bg-red-600 text-white"
           aria-label="Se déconnecter de l'intranet"
         >
           Se déconnecter
@@ -116,7 +119,3 @@ const handleLogout = () => {
   router.push({ name: 'Connexion' });
 };
 </script>
-
-<style scoped>
-/* Tes styles existants. */
-</style>

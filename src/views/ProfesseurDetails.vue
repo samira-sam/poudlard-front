@@ -11,11 +11,11 @@
     <div v-else-if="!professeur" class="text-gray-500 text-lg">Professeur non trouvé.</div>
     <div v-else>
       <div class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-gray-300 mb-6">
-        <img :src="profileImageUrl" :alt="`Photo de ${professeur.utilisateur.prenom} ${professeur.utilisateur.nom}`"
+        <img :src="profileImageUrl" :alt="`Photo de ${professeur.utilisateur?.prenom} ${professeur.utilisateur?.nom}`"
              class="w-full h-full object-cover" />
       </div>
-      <h2 class="text-3xl font-bold mb-2 text-gray-900">{{ professeur.utilisateur.prenom }} {{ professeur.utilisateur.nom }}</h2>
-      <p class="text-xl text-gray-700 mb-4">{{ professeur.matiereEnseignee.nom }}</p>
+      <h2 class="text-3xl font-bold mb-2 text-gray-900">{{ professeur.utilisateur?.prenom }} {{ professeur.utilisateur?.nom }}</h2>
+      <p class="text-xl text-gray-700 mb-4">{{ professeur.matiereEnseignee?.nom }}</p>
       <p class="text-lg text-gray-800 leading-relaxed">{{ professeur.description }}</p>
     </div>
   </div>

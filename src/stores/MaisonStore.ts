@@ -24,7 +24,7 @@ export const useMaisonStore = defineStore('maison', {
       this.error = null; // Réinitialise l'erreur précédente
       try {
         // Remplace 'http://localhost:3033/maisons' par l'URL exacte de ton API backend pour les maisons
-        const response = await axios.get<Maison[]>('http://localhost:3033/maisons');
+        const response = await axios.get<Maison[]>('http://localhost:3033/api/maisons');
         this.allMaisons = response.data; // Stocke les données récupérées
         console.log('Données des maisons chargées:', this.allMaisons); // Pour le débogage
       } catch (err: any) {

@@ -71,7 +71,7 @@ export default defineConfig({
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
-      '/matieres': {
+      'api/matieres': {
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
@@ -79,7 +79,7 @@ export default defineConfig({
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
-      '/maisons': {
+      '/api/maisons': {
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
@@ -101,7 +101,7 @@ export default defineConfig({
         target: 'http://localhost:3033',
         changeOrigin: true,
       },
-      '/annee-etudes': {
+      'api/annee-etudes': {
         target: 'http://localhost:3033',
         changeOrigin: true,
       },

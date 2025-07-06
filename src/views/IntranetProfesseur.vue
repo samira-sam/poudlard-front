@@ -220,8 +220,8 @@ onMounted(async () => {
 
 // Gérer la déconnexion
 const handleLogout = () => {
-  professeurStore.resetStore();
   authStore.logout();
+  router.push({ name: 'Connexion' });
 };
 </script>
 

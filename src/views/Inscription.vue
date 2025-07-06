@@ -70,7 +70,7 @@
       </router-link>
     </div>
 
-    <p v-if="authStore.message" class="mt-4 text-purple-900">{{ authStore.message }}</p>
+    <p v-if="authStore.message" class="mt-4 text-green-700">{{ authStore.message }}</p>
     <p v-if="authStore.error" class="mt-4 text-red-600">{{ authStore.error }}</p>
   </div>
 </template>

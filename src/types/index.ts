@@ -171,6 +171,8 @@ export interface EleveProfil {
   maison: string | null; // Nom de la maison
   matieres: MatiereProfil[];
   moyenne_generale: string | null;  // Tableau des matières avec leurs détails spécifiques au profil
+  commentaires: string[]; 
+  email: string;
 }
 
 // --- Interfaces Spécifiques au Professeur (pour le ProfesseurStore) ---

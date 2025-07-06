@@ -32,10 +32,10 @@ export const useMatiereStore = defineStore('matiere', {
       this.loading = true;
       this.error = null;
       try {
-        const matieresResponse = await axios.get('http://localhost:3033/matieres');
+        const matieresResponse = await axios.get('http://localhost:3033/api/matieres');
         let matieresData: Matiere[] = matieresResponse.data;
 
-        const relationsResponse = await axios.get('http://localhost:3033/annees-etudes-matieres');
+        const relationsResponse = await axios.get('http://localhost:3033/api/annees-etudes-matieres');
         const relationsData: AnneeEtudeRelation[] = relationsResponse.data;
 
         this.matieres = matieresData.map(matiere => {
@@ -63,7 +63,7 @@ export const useMatiereStore = defineStore('matiere', {
       this.error = null;
       try {
         // Appelle simplement l'API pour la matière seule
-        const response = await axios.get(`http://localhost:3033/matieres/${id}`);
+        const response = await axios.get(`http://localhost:3033/api/matieres/${id}`);
         return response.data; // Renvoie les données brutes de la matière
       } catch (err: any) {
         console.error(`Erreur lors de la récupération de la matière ${id}:`, err);

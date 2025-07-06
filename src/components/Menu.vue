@@ -31,8 +31,40 @@
             </transition>
           </div>
 
-          <RouterLink to="/intranet-eleve" class="hover:text-blue-600">Intranet</RouterLink>
-          <RouterLink to="/inscription" class="hover:text-blue-600">Connexion / Inscription</RouterLink>
+          <!-- Lien Intranet dynamique selon rôle -->
+          <RouterLink
+            v-if="authStore.isEleve"
+            to="/intranet-eleve"
+            class="hover:text-blue-600"
+          >
+            Intranet
+          </RouterLink>
+          <RouterLink
+            v-else-if="authStore.isProfesseur"
+            to="/intranet-professeur"
+            class="hover:text-blue-600"
+          >
+            Intranet
+          </RouterLink>
+
+          <!-- Si non connecté, afficher connexion/inscription -->
+          <RouterLink
+            v-if="!authStore.isAuthenticated"
+            to="/inscription"
+            class="hover:text-blue-600"
+          
+            >
+            Connexion / Inscription
+          </RouterLink>
+
+          <!-- Si connecté, afficher bouton déconnexion -->
+          <button
+            v-if="authStore.isAuthenticated"
+            @click="logout"
+            class="hover:text-red-400 bg-transparent border border-red-400 rounded px-3 py-1"
+          >
+            Déconnexion
+          </button>
         </div>
 
         <!-- Menu burger (mobile) -->
@@ -51,14 +83,50 @@
         <details class="block">
           <summary class="cursor-pointer hover:text-blue-600">École</summary>
           <div class="ml-4 space-y-1">
-            <RouterLink to="/matiere" class="block hover:text-blue-600">Cours</RouterLink>
-            <RouterLink to="/maison" class="block hover:text-blue-600">Maison</RouterLink>
-            <RouterLink to="/professeur" class="block hover:text-blue-600">Professeur</RouterLink>
+            <RouterLink to="/matieres" class="block hover:text-blue-600">Cours</RouterLink>
+            <RouterLink to="/maisons" class="block hover:text-blue-600">Maison</RouterLink>
+            <RouterLink to="/professeurs" class="block hover:text-blue-600">Professeur</RouterLink>
           </div>
         </details>
 
-        <RouterLink to="/intranet" class="block hover:text-blue-600">Intranet</RouterLink>
-        <RouterLink to="/connexion" class="block hover:text-blue-600">Connexion / Inscription</RouterLink>
+        <!-- Lien Intranet dynamique mobile -->
+        <RouterLink
+          v-if="authStore.isEleve"
+          to="/intranet-eleve"
+          class="block hover:text-blue-600"
+        >
+          Intranet
+        </RouterLink>
+        <RouterLink
+          v-else-if="authStore.isProfesseur"
+          to="/intranet-professeur"
+          class="block hover:text-blue-600"
+        >
+          Intranet
+        </RouterLink>
+        <RouterLink
+          v-else-if="authStore.isAdmin"
+          to="/intranet-admin"
+          class="block hover:text-blue-600"
+        >
+          Intranet
+        </RouterLink>
+
+        <RouterLink
+          v-if="!authStore.isAuthenticated"
+          to="/connexion"
+          class="block hover:text-blue-600"
+        >
+          Connexion / Inscription
+        </RouterLink>
+
+        <button
+          v-if="authStore.isAuthenticated"
+          @click="logout"
+          class="block hover:text-red-400 bg-transparent border border-red-400 rounded px-3 py-1"
+        >
+          Déconnexion
+        </button>
       </div>
     </div>
   </nav>
@@ -66,9 +134,15 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/auth'
 
 const isOpen = ref(false)
 const showDropdown = ref(false)
+const authStore = useAuthStore()
+
+function logout() {
+  authStore.logout()
+}
 </script>
 
 <style scoped>

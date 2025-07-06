@@ -57,6 +57,15 @@
             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
           />
         </div>
+        <div>
+  <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+  <input
+    type="email"
+    id="email"
+    v-model="editableProfil.email"
+    class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-purple-500 focus:border-purple-500 sm:text-sm"
+  />
+</div>
 
         <div class="flex justify-end space-x-4 mt-8">
           <button
@@ -89,12 +98,13 @@ const eleveStore = useEleveStore();
 const router = useRouter();
 
 // ⭐ MODIFICATION ICI : Initialise editableProfil avec des chaînes vides pour nom et prenom, et null pour contact_parent ⭐
-const editableProfil = ref< Pick<EleveProfil, "nom" | "prenom" | "contact_parent"> >
-({
-  nom: '', // Assure que nom est une chaîne vide par défaut
-  prenom: '', // Assure que prenom est une chaîne vide par défaut
-  contact_parent: null, // contact_parent peut être null
+const editableProfil = ref< Pick<EleveProfil, "nom" | "prenom" | "contact_parent" | "email"> >({
+  nom: '',
+  prenom: '',
+  contact_parent: null,
+  email: '',
 });
+
 
 onMounted(async () => {
   // Si le profil n'est pas déjà chargé, tente de le charger
@@ -108,11 +118,12 @@ watch(
   () => eleveStore.profil,
   (newProfil) => {
     if (newProfil) {
-      // Peuple editableProfil avec les données du profil existant
+      
       editableProfil.value = {
         nom: newProfil.nom,
         prenom: newProfil.prenom,
         contact_parent: newProfil.contact_parent,
+        email: newProfil.email,
       };
     }
   },
