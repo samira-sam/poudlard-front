@@ -132,6 +132,7 @@ watch(
 
 // Gère la soumission du formulaire
 const submitForm = async () => {
+  console.log("Données envoyées :", editableProfil.value);
   try {
     // S'assure d'envoyer uniquement les champs pertinents pour le backend
     // `editableProfil.value` contient déjà les champs requis.
