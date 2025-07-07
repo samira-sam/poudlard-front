@@ -43,6 +43,14 @@
       >
         {{ loading ? 'Connexion...' : 'Se connecter' }}
       </button>
+       <div class="mt-4 text-center">
+      <router-link
+        to="/mot-de-passe-oublie"
+        class="text-sm font-medium text-purple-700 hover:text-purple-900"
+      >
+        Mot de passe oublié ?
+      </router-link>
+    </div>
     </form>
 
     <p v-if="authStore.message" class="mt-4 text-green-600 text-center">{{ authStore.message }}</p>

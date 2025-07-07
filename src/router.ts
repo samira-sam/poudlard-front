@@ -7,6 +7,9 @@ import EditEleveProfilView from './views/EditEleveProfil.vue';
 import IntranetProfesseur from './views/IntranetProfesseur.vue';
 // IMPORTE LA VUE POUR L'INTRANET ÉLÈVE
 import IntranetEleve from './views/IntranetEleve.vue'; // S'assurer que IntranetEleve est bien importé
+// Importe les nouveaux composants mot de passe oublié
+import ForgotPassword from '@/views/ForgotPassword.vue';
+import ResetPassword from '@/views/ResetPassword.vue';
 
 // Importation des autres composants avec lazy loading
 const Home = () => import('./views/Accueil.vue');
@@ -21,6 +24,7 @@ const Boutique = () => import('./views/Boutique.vue');
 const Connexion = () => import('./views/Connexion.vue');
 const Inscription = () => import('./views/Inscription.vue');
 const Intranet = () => import('./views/Intranet.vue'); // Gardé si tu en as besoin, sinon à supprimer
+
 
 // Enum pour la clarté des rôles
 enum UserRole {
@@ -68,14 +72,19 @@ const routes: Array<RouteRecordRaw> = [
     component: IntranetProfesseur,
     meta: { requiresAuth: true, roles: [UserRole.PROFESSEUR] },
   },
-
-  // Tu peux ajouter une route pour l'intranet admin ici plus tard
-  // {
-  //   path: '/intranet-admin',
-  //   name: 'intranetAdmin',
-  //   component: IntranetAdmin, // Assure-toi d'importer IntranetAdmin
-  //   meta: { requiresAuth: true, roles: [UserRole.ADMIN] },
-  // },
+// --- NOUVELLES ROUTES ---
+    {
+      path: '/mot-de-passe-oublie',
+      name: 'forgot-password',
+      component: ForgotPassword,
+    },
+    {
+      path: '/reinitialiser-mot-de-passe/:token', // :token est un paramètre dynamique
+      name: 'reset-password',
+      component: ResetPassword,
+      props: true, // Permet de passer le token comme prop si tu le souhaites (non utilisé directement ici car on lit via useRoute)
+    },
+   
 ];
 
 const router = createRouter({
